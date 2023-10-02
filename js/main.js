@@ -1,7 +1,8 @@
 // WEB303 Assignment 2
+//Shobhinn Thomas Saj #0819372
 $(document).ready(function() {
     $("a#prospect").click(function() {
-        $("#content").hide();
+        $("#content").fadeOut("slow");
         var xhr = new XMLHttpRequest;
         xhr.open('GET','prospect.html',true);
         xhr.onload = function()
@@ -19,7 +20,7 @@ $(document).ready(function() {
         
     });
     $("a#convert").click(function() {
-        $("#content").hide();
+        $("#content").fadeOut("slow");
         var xhr = new XMLHttpRequest;
         xhr.open('GET','convert.html',true);
         xhr.onload = function()
@@ -37,7 +38,7 @@ $(document).ready(function() {
         
     });
     $("a#retain").click(function() {
-        $("#content").hide();
+        $("#content").fadeOut("slow");
         var xhr = new XMLHttpRequest;
         xhr.open('GET','retain.html',true);
         xhr.onload = function()
