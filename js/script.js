@@ -41,7 +41,8 @@ $(document).ready(function () {
             }
         },
         (err) => {    //display error message if geolocation not available
-            alert(err.message);
+            $('#locationhere').html(`<p>${err.message}</p></br><h3>You must allow geolocation to use this app!</h3>`);
+        
         });
 
     }
