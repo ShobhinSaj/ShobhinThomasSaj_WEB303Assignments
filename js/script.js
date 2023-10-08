@@ -17,12 +17,10 @@ $(document).ready(function () {
                 $('#locationhere').html(`<p>Your current location is <b>${position.coords.latitude}</b> deg Latitude and <b>${position.coords.longitude}</b> deg Longitude
                 with Accuracy ${position.coords.accuracy}</br>
                 Your location on last visit was <b>${strdLat}</b> deg Latitude and <b>${strdLong}</b> deg Longitude</br></br><h3 id="Wlcme">Welcome Back!</h3>`);
-                console.log($('#Wlcme').html());
-                
-                //display distance travelled since last visit
+               //display distance travelled since last visit
                 if(dist>0){
                     dist/=1000;
-                    $(`<p>You have travelled ${dist} km(s) since your last visit!</p>`).appendTo('#locationhere');
+                    $(`<p>You have travelled ${(dist).toFixed(2)} km(s) since your last visit!</p>`).appendTo('#locationhere');
                 }
                 
                 clearLocstrge();            //clear location from local storage
