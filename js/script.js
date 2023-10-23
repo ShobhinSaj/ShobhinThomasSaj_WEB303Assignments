@@ -14,16 +14,20 @@ $(document).ready(function () {
       updateContentitem=function(id,name,deScrp,catGen){    //user-defined function
         if(this.id===id){
             
-            if(this.name!=null){
+            if(name!=null){
                 this.name=name;
             }
-            if(this.deScrp!=null){
+            if(deScrp!=null){
                 this.deScrp=deScrp;
             }
-            if(this.catGen!=null){
+            if(catGen!=null){
                 this.catGen=catGen;
             }
  
+        }
+        else{
+            
+            alert("no items matching id value passed exists!Please try again! ");
         }
       } 
       toString(){               //toString function definition override
@@ -52,6 +56,18 @@ $(document).ready(function () {
             margin: "10px auto",
           });
       });
+      
+      $('#updateItems').click(function(){           //Succesful array updation button
+        const targetItem = contentItems.find(item => item.id === 1);
+        
+        targetItem.updateContentitem(1,"M426","One of the most preferred Assault Rifles, uses 5.56×45mm NATO ammo","Assault Rifle");
+        alert("Item 1 updated Succesfully!");
+        });
+        
+        $('#updateItemsfaild').click(function(){     //Failed array updation button
+            const targetItem = contentItems.find(item => item.id === 1);
+            targetItem.updateContentitem(10,"M426","One of the most preferred Assault Rifles, uses 5.56×45mm NATO ammo","Assault Rifle");
+           });
       
 });
 
