@@ -1,79 +1,57 @@
 /*
-    Assignment #4
-    Shobhin Thomas Saj
+    Assignment 05
 */
 
 $(document).ready(function () {
     
-    if(navigator.geolocation){
-        
-        navigator.geolocation.getCurrentPosition((position) =>
-        {   
-            var strdLat = localStorage.getItem('userLat');
-            var strdLong = localStorage.getItem('userLong');
-            if(strdLat && strdLong){
-                //calculate distance travelled by user post last visit
-                var dist= calcDistanceBetweenPoints(position.coords.latitude,position.coords.longitude,strdLat,strdLong);
-                $('#locationhere').html(`<p>Your current location is <b>${position.coords.latitude}</b> deg Latitude and <b>${position.coords.longitude}</b> deg Longitude
-                with Accuracy ${position.coords.accuracy}</br>
-                Your location on last visit was <b>${strdLat}</b> deg Latitude and <b>${strdLong}</b> deg Longitude</br></br><h3 id="Wlcme">Welcome Back!</h3>`);
-               //display distance travelled since last visit
-                if(dist>0){
-                    dist/=1000;
-                    $(`<p>You have travelled ${(dist).toFixed(2)} km(s) since your last visit!</p>`).appendTo('#locationhere');
-                }
-                
-                clearLocstrge();            //clear location from local storage
-                //set current location values to local stoorage                
-                localStorage.setItem("userLat", JSON.stringify(position.coords.latitude));
-                localStorage.setItem("userLong", JSON.stringify(position.coords.longitude));
-                
-            }
-            else{
-                
-                $('#locationhere').html(`<p>Your current location is <b>${position.coords.latitude}</b> deg Latitude and <b>${position.coords.longitude}</b> deg Longitude
-                </br></br><h3 class="Wlcme">Welcome to E Corp!</h3>`);
-                localStorage.setItem("userLat", JSON.stringify(position.coords.latitude));
-                localStorage.setItem("userLong", JSON.stringify(position.coords.longitude));
-                
-            }
-        },
-        (err) => {    //display error message if geolocation not available
-            $('#locationhere').html(`<p>${err.message}</p></br><h3>You must allow geolocation to use this app!</h3>`);
-        
-        });
-
-    }
-    else{
-        displayErrorMessage("Geolocation is not supported by your browser.");
-    }
-
-
-    // DO NOT EDIT ANY CODE IN THIS FUNCTION DEFINTION
-    // function to calculate the distance in metres between two lat/long pairs on Earth
-    // Haversine formula - https://en.wikipedia.org/wiki/Haversine_formula
-    // Aren't those cool variable names? Yah gotta love JavaScript
-    function calcDistanceBetweenPoints(lat1, lon1, lat2, lon2) {
-        var toRadians = function (num) {
-            return num * Math.PI / 180;
+    class ContentItem{
+        constructor(id,name,deScrp,catGen){   //Constructor for class ContentItem
+            this.id=id;
+            this.name=name;
+            this.deScrp=deScrp;
+            this.catGen=catGen;
         }
-        var R = 6371000; // radius of Earth in metres
-        var φ1 = toRadians(lat1);
-        var φ2 = toRadians(lat2);
-        var Δφ = toRadians(lat2 - lat1);
-        var Δλ = toRadians(lon2 - lon1);
-
-        var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-        return (R * c);
+      updateContentitem=function(id,name,deScrp,catGen){    //user-defined function
+        if(this.id===id){
+            
+            if(this.name!=null){
+                this.name=name;
+            }
+            if(this.deScrp!=null){
+                this.deScrp=deScrp;
+            }
+            if(this.catGen!=null){
+                this.catGen=catGen;
+            }
+ 
+        }
+      } 
+      toString(){               //toString function definition override
+        return `<div class="content-item-wrapper" id="content-item-${this.id}">
+                <h2>${this.name}</h2>
+                <p>${this.deScrp}</p>
+                <div><b>Category:</b> ${this.catGen}</div>
+                </div>`;
+      }
+      
     }
-    function clearLocstrge(){   //function clear location from local storage
-        localStorage.removeItem("userLat");
-        localStorage.removeItem("userLong");
-    }
-
-
+    contentItems = [
+        new ContentItem(0, "SCAR-L", "The SCAR-L is the light variant of the FN SCAR (Special Operations Forces Combat Assault Rifle), a gas-operated short-stroke gas piston automated rifle chambered to a variety of cartridges.", "Assault Rifles"),
+        new ContentItem(1, "SLR", "The SLR (Self Loading Rifle), is a DMR type weapon in BATTLEGROUNDS. A semi-automatic, British version of the venerable FN FAL battle rifle", "Designated Marksman Rifles"),
+        new ContentItem(2, "Vector", "The Vector is a submachine gun type weapon in BATTLEGROUNDS. Introduced in the Early Access Month 1 Update of 2017, the Vector uses an unconventional delayed blowback system to mitigate recoil, making it easier to control automatic fire at close ranges.", "Submachine Guns"),
+        new ContentItem(3, "M24", "The M24 Sniper Weapon System (SWS) is the military and police version of the Remington Model 700 rifle, M24 being the model name assigned by the United States Army after adoption as their standard sniper rifle in 1988", "Sniper Rifle"),
+        new ContentItem(4, "DP-28", "The DP-28 is a light machine gun type weapon in BATTLEGROUNDS. Manufactured in Russia, its Russian name is 'Pulemyot Degtyaryova Pekhotny,' translating to 'Degtyaryov's infantry machine gun.'", "Light Machine Gun"),
+      ];
+      contentItems.forEach(element => {
+       var $newContent=$(element.toString());
+        $('#content-item-list').append($newContent);
+        $('.content-item-wrapper').css({
+            border: "1px solid #ccc",
+            width: "300px",
+            padding: "10px",
+            margin: "10px auto",
+          });
+      });
 });
 
 
