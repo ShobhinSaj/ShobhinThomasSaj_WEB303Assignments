@@ -52,6 +52,7 @@ $(document).ready(function () {
             margin: "10px auto",
           });
       });
+      
 });
 
 
