@@ -95,7 +95,7 @@ main p{
 .tabbd_sectns{
     border-radius: 8px;
     background-color: rgb(142, 142, 142);
-    width: 90%;
+    width: 40%;
     margin: 2% auto;
     font-family: 'Roboto Slab', serif;
     color: white;
@@ -104,6 +104,7 @@ main p{
     display: grid;
     grid-template-rows: 60px;
     grid-template-columns: repeat(5,100px);
+    justify-content: center;
     column-gap: 0.5%;
 }
 .tab_cntrl{
@@ -124,4 +125,27 @@ main p{
 }
 .tab-panel.active{
     display: block;
+}
+/*Footer section styles*/
+footer {
+    background-color: #1f1f1f;
+    width: 100%;
+    height: 12%;
+    border-top: 2px solid rgb(56, 225, 38);
+    
+}
+
+footer p {
+
+    text-align: center;
+    color: white;
+    width: 50%;
+    font-size: 90%;
+    margin: 0 auto;
+    line-height: 100%;
+    padding: 0.5%;
+}
+
+footer>p>strong {
+    font-family: 'Montserrat', sans-serif;
 }
