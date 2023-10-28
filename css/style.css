@@ -118,7 +118,7 @@ main p{
     border: none;
 }
 .tabbd_sectns>.tab-panel>img{
-    width: 40%;
+    width: 100%;
 }
 .tab-panel{
     display: none;
