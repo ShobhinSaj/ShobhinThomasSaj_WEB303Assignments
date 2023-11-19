@@ -1,22 +1,22 @@
 $(document).ready(function(){
-    $('.accordion-control').on('click', function(e) {
-        e.preventDefault();
-        $('.accordion-panel').removeClass("active");
-        $('.accordion-panel').hide();
-        $(this).next('.accordion-panel').addClass("active");
-        $(this)
-        .next('.accordion-panel')
-        .not(':animated')
-        .slideToggle();
-        });
-        $(".tab_cntrl a").click(function (e) {
-            e.preventDefault();
-            var targetPanelId = $(this).attr("href").substring(1);
-            showTab(targetPanelId);
-        });
-
-        function showTab(panelId) {
-            $(".tab-panel").removeClass("active");
-            $("#" + panelId).addClass("active");
+    $.ajax({
+        url: 'data.json',
+        type:'GET',
+        dataType: 'json',
+        success: function(data) {
+            
+            $.each(data, function(index, item) {
+                $('#charactersTableBody').append(
+                    '<tr>' +
+                        '<td>' + item.firstName + '</td>' +
+                        '<td>' + item.lastName + '</td>' +
+                        '<td>' + item.gender + '</td>' +
+                        '<td>' + item.role + '</td>' +
+                        '<td>' + item.dateOfBirth + '</td>' +
+                       
+                    '</tr>'
+                );
+            });
         }
+});
 });

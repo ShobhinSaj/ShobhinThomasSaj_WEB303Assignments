@@ -1,0 +1,18 @@
+[
+    {
+        "firstName": "John",
+        "lastName": "Doe",
+        "gender": "Male",
+        "role": "Protagonist",
+        "dateOfBirth": "1985-03-15"
+        
+    },
+    {
+        "firstName": "Alice",
+        "lastName": "Smith",
+        "gender": "Female",
+        "role": "Antagonist",
+        "dateOfBirth": "1990-07-22"
+       
+    }
+]
