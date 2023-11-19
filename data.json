@@ -1,18 +1,51 @@
 [
     {
-        "firstName": "John",
-        "lastName": "Doe",
+        "firstName": "Thomas",
+        "lastName": "Shelby",
         "gender": "Male",
-        "role": "Protagonist",
-        "dateOfBirth": "1985-03-15"
-        
+        "role": "Gang Leader",
+        "dateOfBirth": "1888-03-04"
     },
     {
-        "firstName": "Alice",
-        "lastName": "Smith",
+        "firstName": "Arthur",
+        "lastName": "Shelby",
+        "gender": "Male",
+        "role": "Brother",
+        "dateOfBirth": "1886-09-19"
+    },
+    {
+        "firstName": "Polly",
+        "lastName": "Gray",
         "gender": "Female",
-        "role": "Antagonist",
-        "dateOfBirth": "1990-07-22"
-       
+        "role": "Aunt",
+        "dateOfBirth": "1875-11-22"
+    },
+    {
+        "firstName": "Alfie",
+        "lastName": "Solomons",
+        "gender": "Male",
+        "role": "Rival Gang Leader",
+        "dateOfBirth": "1877-06-12"
+    },
+    {
+        "firstName": "Ada",
+        "lastName": "Shelby",
+        "gender": "Female",
+        "role": "Sister",
+        "dateOfBirth": "1890-05-01"
+    },
+    {
+        "firstName": "John",
+        "lastName": "Shelby",
+        "gender": "Male",
+        "role": "Brother",
+        "dateOfBirth": "1892-08-15"
+    },
+    {
+        "firstName": "Grace",
+        "lastName": "Burgess",
+        "gender": "Female",
+        "role": "Love Interest",
+        "dateOfBirth": "1886-12-29"
     }
 ]
