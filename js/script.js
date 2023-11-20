@@ -4,7 +4,6 @@ function reqAjax() {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-
             $.each(data, function (index, item) {
                 $('#tableBody').append(
                     '<tr>' +
@@ -16,57 +15,86 @@ function reqAjax() {
                     '</tr>'
                 );
             });
+            //strt here
+            var compare = {
+                name: function (a, b) {
+
+                    if (a < b) {
+                        return -1;
+                    } else {
+                        return a > b ? 1 : 0;
+                    }
+                },
+                date: function (a, b) {
+                    a = new Date(a);
+                    b = new Date(b);
+                    return a - b;
+                }
+            }
+            $('.tablesort').each(function () {
+                console.log("Its on");
+                var $table = $(this);
+                var $tbody = $table.find('tbody');
+                var $controls = $table.find('th');
+                var rows = $tbody.find('tr').toArray();
+                var origData = rows.slice();
+                
+                $controls.on('click', function () {
+                    var $header = $(this);
+                    var order = $header.data('sort');
+                    var column;
+                    var chevid;
+                    $('span').html('');
+                    chevid = '#' + $header.attr('id') + 'chevron';
+                    var chevron = $(chevid);
+                    if ($header.hasClass('ascending')) {
+
+                        if (compare.hasOwnProperty(order)) {
+                            
+                            column = $controls.index(this);
+                            rows.sort(function (a, b) {
+                                a = $(a).find('td').eq(column).text();
+                                b = $(b).find('td').eq(column).text();
+                                return compare[order](a, b);
+                            });
+                            $tbody.append(rows.reverse());
+                            $header.removeClass('ascending').addClass('descending');
+                            chevron.html('&#x25BC;');
+                        }
+
+                    }
+                    else if ($header.hasClass('descending')) {
+                        $tbody.empty();
+                        $tbody.append(origData);
+                        $header.removeClass('descending');
+                        chevron.html('');
+                    }
+                   
+                    else {
+                       
+                        if (compare.hasOwnProperty(order)) {
+                            column = $controls.index(this);
+                            rows.sort(function (a, b) {
+                                a = $(a).find('td').eq(column).text();
+                                b = $(b).find('td').eq(column).text();
+                                return compare[order](a, b);
+                            });
+                            $tbody.append(rows);
+                            $header.addClass('ascending');
+                            chevron.html('&#x25B2;');
+                        }
+
+                    }
+                });
+            });
+             
+
         }
+
+
     });
 }
 $(document).ready(function () {
     reqAjax();
-    var compare = {
-        name: function (a, b) {
-            a = a.replace(/^the /i, '');
-            b = b.replace(/^the /i, '');
-            if (a < b) {
-                return -1;
-            } else {
-                return a > b ? 1 : 0;
-            }
-        },
-        date: function (a, b) {
-            a = new Date(a);
-            b = new Date(b);
-            return a - b;
-        }
-    }
-    $('.tablesort').each(function () {
 
-        var $tbody = $('.tablesort').find('tbody');
-        var $controls = $('.tablesort').find('th');
-        var rows = $tbody.find('tr').toArray();
-        
-        $controls.on('click', function () {
-            var $header = $(this);
-            console.log($header);
-            var order = $header.data('sort');
-            var column;
-
-            if ($header.is('.ascending') || $header.is('.descending')) {
-                $header.toggleClass('ascending descending');
-                $tbody.append(rows.reverse());
-            } else {
-                $header.addClass('ascending');
-                $header.siblings().removeClass('ascending descending');
-                if (compare.hasOwnProperty(order)) {
-
-                    column = $controls.index(this);
-                    rows.sort(function (a, b) {
-                        a = $(a).find('td').eq(column).text();
-                        b = $(b).find('td').eq(column).text();
-                        return compare[order](a, b);
-                    });
-
-                    $tbody.append(rows);
-                }
-            }
-        });
-    });
 });
