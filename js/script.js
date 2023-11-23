@@ -1,100 +1,11 @@
-function reqAjax() {
-    $.ajax({
-        url: 'data.json',
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            $.each(data, function (index, item) {
-                $('#tableBody').append(
-                    '<tr>' +
-                    '<td>' + item.firstName + '</td>' +
-                    '<td>' + item.lastName + '</td>' +
-                    '<td>' + item.gender + '</td>' +
-                    '<td>' + item.role + '</td>' +
-                    '<td>' + item.dateOfBirth + '</td>' +
-                    '</tr>'
-                );
-            });
-            //strt here
-            var compare = {
-                name: function (a, b) {
-
-                    if (a < b) {
-                        return -1;
-                    } else {
-                        return a > b ? 1 : 0;
-                    }
-                },
-                date: function (a, b) {
-                    a = new Date(a);
-                    b = new Date(b);
-                    return a - b;
-                }
-            }
-            $('.tablesort').each(function () {
-                console.log("Its on");
-                var $table = $(this);
-                var $tbody = $table.find('tbody');
-                var $controls = $table.find('th');
-                var rows = $tbody.find('tr').toArray();
-                var origData = rows.slice();
-                
-                $controls.on('click', function () {
-                    var $header = $(this);
-                    var order = $header.data('sort');
-                    var column;
-                    var chevid;
-                    $('span').html('');
-                    chevid = '#' + $header.attr('id') + 'chevron';
-                    var chevron = $(chevid);
-                    if ($header.hasClass('ascending')) {
-
-                        if (compare.hasOwnProperty(order)) {
-                            
-                            column = $controls.index(this);
-                            rows.sort(function (a, b) {
-                                a = $(a).find('td').eq(column).text();
-                                b = $(b).find('td').eq(column).text();
-                                return compare[order](a, b);
-                            });
-                            $tbody.append(rows.reverse());
-                            $header.removeClass('ascending').addClass('descending');
-                            chevron.html('&#x25BC;');
-                        }
-
-                    }
-                    else if ($header.hasClass('descending')) {
-                        $tbody.empty();
-                        $tbody.append(origData);
-                        $header.removeClass('descending');
-                        chevron.html('');
-                    }
-                   
-                    else {
-                       
-                        if (compare.hasOwnProperty(order)) {
-                            column = $controls.index(this);
-                            rows.sort(function (a, b) {
-                                a = $(a).find('td').eq(column).text();
-                                b = $(b).find('td').eq(column).text();
-                                return compare[order](a, b);
-                            });
-                            $tbody.append(rows);
-                            $header.addClass('ascending');
-                            chevron.html('&#x25B2;');
-                        }
-
-                    }
-                });
-            });
-             
-
-        }
-
-
+$(function () {
+    $('#photo-viewer').customPhotoViewer().show().on('click', '.photo-box', function (e) {
+        var $content = $(this).clone().find('img').css({
+            marginLeft: 0,
+            marginTop: 0,
+            width: '100%',
+            height: 'auto'
+        });
+       e.preventDefault();
     });
-}
-$(document).ready(function () {
-    reqAjax();
-
 });

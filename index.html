@@ -1,28 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/styles.css" rel="stylesheet">
-    <script src="js/jquery.js"></script>
-    <script src="js/script.js"></script>
-    <title>Assignment07</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/photoViewer.css" rel="stylesheet">
 </head>
+
 <body>
-    <header>
-        <h1>Assignment07</h1>
-    </header>
-    <table class="tablesort">
-        <thead>
-            <tr>
-                <th id="fname" data-sort="name"><a href="#">First Name</a><span id="fnamechevron">&nbsp;</span></th>
-                <th id="lname" data-sort="name"><a href="#">Last Name</a><span id="lnamechevron">&nbsp;</span></th>
-                <th id="gen" data-sort="name"><a href="#">Gender</a><span id="genchevron">&nbsp;</span></th>
-                <th id="role" data-sort="name"><a href="#">Role</a><span id="rolechevron">&nbsp;</span></th>
-                <th id="dob" data-sort="date"><a href="#">Date of Birth</a><span id="dobchevron">&nbsp;</span></th>
-            </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-    </table>
+    <h1>Shobhin's Photo Gallery</h1>
+    <div id="photo-viewer">
+        
+       
+
+        <a href="#" class="photo-box is-loading"></a>
+        <div class="photo-thumbnails">
+            <a href="img/full-sized-photo-1.jpeg" class="thumbnail-anchor active" title="photo 1">
+                <img src="img/full-sized-photo-1.jpeg" alt="thumbnail 1">
+            </a>
+            <a href="img/full-sized-photo-2.jpeg" class="thumbnail-anchor" title="photo 2">
+                <img src="img/full-sized-photo-2.jpeg" alt="thumbnail 2">
+            </a>
+            <a href="img/full-sized-photo-3.jpeg" class="thumbnail-anchor" title="photo 2">
+                <img src="img/full-sized-photo-3.jpeg" alt="thumbnail 3">
+            </a>
+            <a href="img/full-sized-photo-4.jpeg" class="thumbnail-anchor" title="photo 2">
+                <img src="img/full-sized-photo-4.jpeg" alt="thumbnail 4">
+            </a>
+            <!-- Add more images here -->
+        </div>
+    </div>
+    <h3>Image Source: <cite>www.Pinterest.com</cite></h3>
+	<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/photoViewer.js"></script>
+    <script type="text/javascript" src="js/script.js"></script> 
+    
+    
+    
 </body>
+
 </html>
