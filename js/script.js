@@ -16,7 +16,7 @@ function reqAjax() {
                     '<td>' + item.dateOfBirth + '</td>' +
                     '</tr>'
                 );
-                console.log($fnames);
+                
             });
             //strt here
             var compare = {
@@ -35,7 +35,7 @@ function reqAjax() {
                 }
             }
             $('.tablesort').each(function () {
-                console.log("Its on");
+                
                 var $table = $(this);
                 var $tbody = $table.find('tbody');
                 var $controls = $table.find('th');
@@ -90,9 +90,9 @@ function reqAjax() {
                     }
                 });
             });
-            //  $(function(){
-            //         var $fnames=        
-            //  });
+             $(function(){
+                console.log($fnames);
+             });
 
         }
 
