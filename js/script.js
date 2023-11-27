@@ -1,12 +1,13 @@
 function reqAjax() {
+    
     $.ajax({
         url: 'data.json',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
             $.each(data, function (index, item) {
-                var $fnames=[];
-                $fnames.push(item.firstName); 
+                
+                // fnames.push(item.firstName.trim().toLowerCase()); 
                 $('#tableBody').append(
                     '<tr>' +
                     '<td>' + item.firstName + '</td>' +
@@ -90,8 +91,47 @@ function reqAjax() {
                     }
                 });
             });
-             $(function(){
-                console.log($fnames);
+             $(function(){                  
+                var $search = $('#filter-search');
+                function searchTable(){
+                    var query=this.value.trim().toLowerCase();
+                    // if($search.empty()){
+                    //     $('#tableBody tr').each(function(){
+                    //         $(this).removeClass("active");
+                            
+                    //     });
+                    // }
+                    $('#tableBody tr').each(function () {
+                        var row = $(this);
+                
+                        // Iterate through each cell in the row
+                        row.find('td:first').each(function () {
+                            var cellText = $(this).text().toLowerCase();
+                            if(query===''){
+                                console.log("emptyy");
+                                $('#tableBody tr').each(function(){$(this).removeClass("active")});
+                            }
+                            // Check if the cell text contains the query
+                            if (cellText.includes(query)) {
+                                // If found, show the row
+                                row.addClass("active")
+                                return false; // Exit the inner loop
+                            } else {
+                                // If not found, hide the row
+                                row.removeClass("active");
+                            }
+                        
+                        });
+                    });
+                
+                }
+                if ('oninput' in $search[0]) {
+                    // Use input event to call filter()
+                    $search.on('input', searchTable);
+                    } else { // Otherwise
+                    // Use keyup event to call filter()
+                    $search.on('keyup', searchTable);
+                    }
              });
 
         }
