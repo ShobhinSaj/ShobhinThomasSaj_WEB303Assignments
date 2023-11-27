@@ -2,7 +2,7 @@
 Javascript II Assignments repo Shobhin Thomas Saj(Student#0819372)
 
 ## Assignment 9
-Aim: Create a webpage with a photoviewer along with added functionalities such as render modal on click etc,using plugins generated from scripts
+Aim: Add search and filter functionalities to table with data retreived from data.json with ajax
 ## Script launch and test
 Script works as intended.
 

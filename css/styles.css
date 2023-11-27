@@ -47,6 +47,20 @@ table {
     background-color:darkgreen;
     color:white;
   }
+  .inactive{
+    background-color:rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
+  }
+  .btncntainr{
+    text-align: center;
+  }
   button{
+    margin-left: 1%;
+    width: 80px;
+    height: 20px;
+    border:1px solid rgb(86, 237, 194);
+  }
+  button:hover{
     
+    background-color: #a1fcbf;
   }
